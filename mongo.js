@@ -26,11 +26,11 @@ const personSchema = new mongoose.Schema({
 const Person = mongoose.model('Person', personSchema)
 
 if (process.argv.length===3) {
-    
+
     Person.find({}).then(result => {
         console.log('phonebook:')
         result.forEach(person => {
-            obj = person.toObject()
+            const obj = person.toObject()
             console.log(obj.name, obj.number)
         })
         mongoose.connection.close()
@@ -46,7 +46,7 @@ if (process.argv.length===3) {
         number: person_pn
     })
 
-    person.save().then(response => {
+    person.save().then(() => {
         console.log(`added ${person_name} number ${person_pn} to phonebook`)
         mongoose.connection.close()
     })
